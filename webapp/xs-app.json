@@ -1,5 +1,5 @@
 {
-  "welcomeFile": "/{{platform === 'SAP Cloud Platform Launchpad' ? 'flpSandbox.html' : 'index.html' }}",
+  "welcomeFile": "/index.html",
   "routes": [
     {
       "source": "^(.*)",
