@@ -1,11 +1,11 @@
 sap.ui.define([
   "sap/ui/core/UIComponent",
   "sap/ui/Device",
-  "<%=appURI%>/model/models"
+  "{{appURI}}/model/models"
 ], function(UIComponent, Device, models) {
   "use strict";
 
-  return UIComponent.extend("<%=appId%>.Component", {
+  return UIComponent.extend("{{appId}}.Component", {
 
     metadata: {
       manifest: "json"
