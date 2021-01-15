@@ -1,4 +1,5 @@
-<% if (viewtype === 'XML') { %> <mvc:View controllerName="<%=appId%>.controller.<%=viewname%>"
+{{#if (viewtype === 'XML')}}
+<mvc:View controllerName="<%=appId%>.controller.<%=viewname%>"
   displayBlock="true"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
@@ -9,7 +10,9 @@
       </Page>
     </pages>
   </App>
-</mvc:View><% } if (viewtype === 'HTML') { -%>
+</mvc:View>
+{{/if}}
+{{#if (viewtype === 'HTML')}}
 <template data-controller-name="<%=appId%>.controller.<%=viewname%>">
   <div data-sap-ui-type="sap.m.App" id="<%= isSubgeneratorCall ? 'idAppControl' : viewname %>"  >
     <div data-sap-ui-type="sap.m.Page" data-title="{i18n>title}">
@@ -17,7 +20,9 @@
       </div>
     </div>
   </div>
-</template><% } if (viewtype === 'JSON') { -%>
+</template>
+{{/if}}
+{{#if (viewtype === 'JSON')}}
 {
   "Type": "sap.ui.core.mvc.JSONView",
   "controllerName": "<%=appId%>.controller.<%=viewname%>",
@@ -30,7 +35,9 @@
       "content": []
     }]
   }]
-}<% } if (viewtype === 'JS') { -%>
+}
+{{/if}}
+{{#if (viewtype === 'JS')}}
 sap.ui.define([ ], function() {
 "use strict";
   sap.ui.jsview("<%=appId%>.view.<%=viewname%>", {
@@ -48,4 +55,5 @@ sap.ui.define([ ], function() {
       });
     }
   });
-});<% } -%>
+});
+{{/if}}
