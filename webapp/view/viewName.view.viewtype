@@ -1,53 +1,46 @@
-{{#if (viewtype === 'XML')}}
-<mvc:View controllerName="{{appId}}.controller.{{viewname}}"
+<% if (viewtype === 'XML') { %> <mvc:View controllerName="<%=appId%>.controller.<%=viewname%>"
   displayBlock="true"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
-  <App id="{{viewname}}" >
+  <App id="<%= isSubgeneratorCall ? 'idAppControl' : viewname %>" >
     <pages>
       <Page title="{i18n>title}">
         <content></content>
       </Page>
     </pages>
   </App>
-</mvc:View>
-{{/if}}
-{{#if (viewtype === 'HTML')}}
-<template data-controller-name="{{appId}}.controller.{{viewname}}">
-  <div data-sap-ui-type="sap.m.App" id="{{viewname}}"  >
+</mvc:View><% } if (viewtype === 'HTML') { -%>
+<template data-controller-name="<%=appId%>.controller.<%=viewname%>">
+  <div data-sap-ui-type="sap.m.App" id="<%= isSubgeneratorCall ? 'idAppControl' : viewname %>"  >
     <div data-sap-ui-type="sap.m.Page" data-title="{i18n>title}">
       <div data-sap-ui-aggregation="content">
       </div>
     </div>
   </div>
-</template>
-{{/if}}
-{{#if (viewtype === 'JSON')}}
+</template><% } if (viewtype === 'JSON') { -%>
 {
   "Type": "sap.ui.core.mvc.JSONView",
-  "controllerName": "{{appId}}.controller.{{viewname}}",
+  "controllerName": "<%=appId%>.controller.<%=viewname%>",
   "content": [{
     "Type": "sap.m.App",
-    "id": "{{viewname}}",
+    "id": "<%= isSubgeneratorCall ? 'idAppControl' : viewname %>",
     "pages": [{
       "Type": "sap.m.Page",
       "title": "{i18n>title}",
       "content": []
     }]
   }]
-}
-{{/if}}
-{{#if (viewtype === 'JS')}}
+}<% } if (viewtype === 'JS') { -%>
 sap.ui.define([ ], function() {
 "use strict";
-  sap.ui.jsview("{{appId}}.view.{{viewname}}", {
+  sap.ui.jsview("<%=appId%>.view.<%=viewname%>", {
 
     getControllerName: function () {
-      return "{{appId}}.controller.{{viewname}}";
+      return "<%=appId%>.controller.<%=viewname%>";
     },
 
     createContent: function () {
-      return new sap.m.App(this.createId("{{viewname}}"),  {
+      return new sap.m.App(this.createId("<%= isSubgeneratorCall ? 'idAppControl' : viewname %>"),  {
         pages: new sap.m.Page({
           title: "{i18n>title}",
           content: []
@@ -55,5 +48,4 @@ sap.ui.define([ ], function() {
       });
     }
   });
-});
-{{/if}}
+});<% } -%>
